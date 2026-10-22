@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>¡Julianita se graduó!</title>
+<meta name="description" content="Josefina los invita a celebrar el grado de Julianita. Domingo 25 de octubre, 3:00 p.m., en Villavicencio.">
+<meta property="og:title" content="¡Julianita se graduó!">
+<meta property="og:description" content="Josefina los invita. Domingo 25 de octubre, 3:00 p.m.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F3ECDD">
+<link rel="icon" type="image/png" href="corazon.png">
+<link rel="preload" as="image" href="foto.webp">
+<link rel="preload" as="image" href="birrete.webp">
+<link rel="stylesheet" href="https://use.typekit.net/vnh5gbh.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --papel: #F3ECDD;
+  --tinta: #2A1AD8;
+  --violeta: #3A12E0;
+  --mostaza: #F2C230;
+  --grafito: #1C1A3A;
+  --grafito-suave: #55526E;
+  --claro: #F6F2FF;
+  /* Neue Haas en Adobe: Display 400 Light · 500 Roman · 600 Medium · 700 Bold; Text 400 Roman · 500 Medium · 700 Bold */
+  --display: "neue-haas-grotesk-display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --texto: "neue-haas-grotesk-text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "DM Mono", ui-monospace, Menlo, monospace;
+  /* degradado tipo "ausculta": lavanda arriba, violeta eléctrico, celeste */
+  --degradado:
+    radial-gradient(120% 70% at 8% 0%, #F6F2FF 0%, rgba(246,242,255,0) 55%),
+    radial-gradient(80% 60% at 100% 12%, #A8CBFF 0%, rgba(168,203,255,0) 60%),
+    radial-gradient(120% 80% at 20% 105%, #2A0FD6 0%, rgba(42,15,214,0) 70%),
+    linear-gradient(165deg, #C4B6FF 0%, #6447F4 38%, #3A12E0 68%, #2B1AB4 100%);
+  --degradado-texto: linear-gradient(100deg, #6A5BB8 0%, #3A12E0 38%, #2F5BFF 70%, #1A1468 100%);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; height: 100%; }
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--papel);
+  background-image:
+    radial-gradient(90% 60% at 20% 10%, rgba(255,250,238,.7), rgba(255,250,238,0) 70%),
+    radial-gradient(70% 50% at 90% 90%, rgba(196,170,120,.18), rgba(196,170,120,0) 70%),
+    url("papel.webp");
+  background-size: auto, auto, 320px 320px;
+  color: var(--grafito);
+  font-family: var(--texto);
+  font-size: 18px;
+  line-height: 1.4;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 80;
+  opacity: 0.16;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .12  0 0 0 0 .1  0 0 0 0 .2  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.etiqueta {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tinta);
+  margin: 0;
+}
+.voz { color: var(--grafito-suave); }
+button { font: inherit; color: inherit; }
+
+/* ---------- Sobre en 3D ---------- */
+#sobre {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+  padding: 24px 16px;
+  background: inherit;
+  transition: opacity 0.7s ease, transform 0.7s ease, visibility 0.7s;
+}
+#sobre.fuera { opacity: 0; transform: scale(1.04); visibility: hidden; }
+#sobre .encabezado { text-align: center; transition: opacity 0.4s, transform 0.5s; }
+#sobre.abierto .encabezado, #sobre.abierto .pista { opacity: 0; transform: translateY(-12px); transition: opacity 0.3s, transform 0.4s; }
+#sobre h2 { font-family: var(--display); font-weight: 500; font-size: 34px; letter-spacing: -0.02em; line-height: 1.05; margin: 10px 0 6px; }
+#sobre .encabezado p.voz { margin: 0; font-size: 17px; }
+.abrir { appearance: none; border: 0; background: none; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.abrir:focus-visible { outline: 2px dashed var(--tinta); outline-offset: 16px; border-radius: 6px; }
+.escena { position: relative; width: 300px; height: 200px; perspective: 1100px; }
+.flotador { position: absolute; inset: 0; transform-style: preserve-3d; animation: flotar 3.6s ease-in-out infinite; }
+@keyframes flotar { 50% { transform: translateY(-8px); } }
+.sombra-piso {
+  position: absolute; left: 6%; right: 6%; bottom: -40px; height: 34px;
+  background: radial-gradient(closest-side, rgba(40,25,90,.38), rgba(40,25,90,0));
+  animation: sombra 3.6s ease-in-out infinite;
+}
+@keyframes sombra { 50% { transform: scale(.9); opacity: .75; } }
+.sobre3d {
+  position: absolute; inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(calc(14deg + var(--rx, 0deg))) rotateY(var(--ry, 0deg)) rotateZ(-3deg);
+  transition: transform 0.3s ease-out;
+}
+.trasera {
+  position: absolute; inset: 0; border-radius: 5px;
+  background: var(--degradado);
+  box-shadow: 0 34px 40px -20px rgba(40,20,110,.5), 0 8px 16px rgba(40,20,110,.18);
+}
+.carta {
+  position: absolute; left: 14px; right: 14px; top: 10px; height: 178px;
+  transform: translateZ(1px);
+  background: #FBF7EE url("papel.webp");
+  background-size: 200px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  padding: 18px 16px;
+  text-align: left;
+  transition: transform 0.85s cubic-bezier(.25,.8,.25,1) 0.6s;
+}
+.carta .etiqueta { font-size: 9px; }
+.carta strong { display: block; font-family: var(--display); font-weight: 600; font-size: 25px; letter-spacing: -0.02em; line-height: 1; color: var(--tinta); margin-top: 10px; }
+.carta span.voz { display: block; font-size: 12px; margin-top: 8px; }
+.bolsillo { position: absolute; inset: 0; transform: translateZ(2px); }
+.pieza { position: absolute; inset: 0; filter: drop-shadow(0 0 0.6px rgba(90,70,40,.45)) drop-shadow(0 -2px 3px rgba(90,70,40,.16)); }
+.forma {
+  position: absolute; inset: 0; border-radius: 5px;
+  background-size: 220px 220px, auto;
+  background-blend-mode: multiply;
+}
+.izq .forma { clip-path: polygon(0 0, 54% 54%, 0 100%); background-image: url("papel.webp"), linear-gradient(100deg, #E2D5B7, #ECE2CB); }
+.der .forma { clip-path: polygon(100% 0, 46% 54%, 100% 100%); background-image: url("papel.webp"), linear-gradient(260deg, #DACDAC, #E8DEC5); }
+.abajo .forma { clip-path: polygon(0 100%, 50% 47%, 100% 100%); background-image: url("papel.webp"), linear-gradient(0deg, #EFE6D1, #E5D9BE); }
+.sombra-solapa { position: absolute; inset: 0; transform: translateZ(2.5px); filter: blur(3px); transition: opacity 0.3s 0.2s; }
+.sombra-solapa i { position: absolute; inset: 0; clip-path: polygon(0 0, 100% 0, 50% 64%); background: rgba(70,50,25,.3); }
+.solapa {
+  position: absolute; inset: 0;
+  transform-origin: 50% 0;
+  transform: translateZ(3px);
+  transform-style: preserve-3d;
+  transition: transform 0.75s cubic-bezier(.5,0,.3,1) 0.2s;
+}
+.solapa .cara { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 5px; }
+.solapa .frente {
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  background-image: url("papel.webp"), linear-gradient(180deg, #E8DDC1, #D8C9A6);
+  background-size: 220px 220px, auto;
+  background-blend-mode: multiply;
+}
+.solapa .dentro { clip-path: polygon(0 100%, 100% 100%, 50% 40%); transform: rotateX(180deg); background: var(--degradado); }
+.sello {
+  position: absolute; left: 50%; top: 60%;
+  width: 68px; height: auto; margin: -34px 0 0 -34px;
+  transform: translateZ(4px) rotate(-8deg);
+  filter: drop-shadow(0 3px 3px rgba(20,30,80,.3));
+  transition: transform 0.55s cubic-bezier(.4,0,.2,1), opacity 0.4s;
+}
+#sobre.abierto .sello { transform: translateZ(60px) translate(80px, -110px) rotate(70deg) scale(.6); opacity: 0; }
+#sobre.abierto .sombra-solapa { opacity: 0; }
+#sobre.abierto .solapa { transform: translateZ(-4px) rotateX(180deg); }
+#sobre.abierto .carta { transform: translateZ(1px) translateY(-108px); }
+#sobre.abierto .flotador, #sobre.abierto .sombra-piso { animation: none; }
+.pista { font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em; color: var(--grafito-suave); text-transform: uppercase; margin: 14px 0 0; }
+
+/* ---------- Pantallas (se avanzan tocando) ---------- */
+.membrete {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 40;
+  padding: calc(12px + env(safe-area-inset-top)) 16px 0;
+  pointer-events: none;
+}
+.progreso { display: flex; gap: 5px; }
+.progreso i { flex: 1; height: 3px; border-radius: 3px; background: rgba(42, 26, 216, .18); overflow: hidden; position: relative; }
+.progreso i::after { content: ""; position: absolute; inset: 0; background: var(--tinta); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+.progreso i.lleno::after { transform: scaleX(1); }
+.membrete .etiqueta { font-size: 10px; margin-top: 10px; }
+.pista-toque {
+  position: fixed;
+  left: 0; right: 0;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  z-index: 40;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tinta);
+  margin: 0;
+  pointer-events: none;
+  animation: latir 2.2s ease-in-out infinite;
+  transition: color 0.4s;
+}
+@keyframes latir { 50% { opacity: .45; } }
+body.sobre-degradado .pista-toque { color: var(--claro); }
+body.cerrado .membrete, body.cerrado .pista-toque, body.cerrado .volver { opacity: 0; pointer-events: none; }
+.volver {
+  position: fixed;
+  right: 6px;
+  top: calc(13px + env(safe-area-inset-top));
+  z-index: 41;
+  appearance: none; border: 0; background: none; cursor: pointer;
+  padding: 12px 10px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--tinta);
+  opacity: .7;
+  transition: color 0.4s, opacity 0.4s;
+  -webkit-tap-highlight-color: transparent;
+}
+.volver:active { opacity: 1; }
+.volver:focus-visible { outline: 2px dashed currentColor; outline-offset: -2px; border-radius: 6px; }
+
+
+main { cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.pantalla {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(56px + env(safe-area-inset-top)) 20px calc(52px + env(safe-area-inset-bottom));
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(28px);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.pantalla.atras { transform: translateX(-28px); }
+.pantalla.activa { opacity: 1; visibility: visible; transform: none; }
+.pantalla > .contenido { width: 100%; max-width: 460px; margin: 0 auto; }
+.pantalla.degradado { background: var(--degradado); color: var(--claro); }
+.pantalla.degradado::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='1' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+}
+
+/* ---------- 1 · Portada ---------- */
+.retrato {
+  position: relative;
+  width: min(74vw, 330px, calc((100dvh - 300px) * 0.87));
+  margin: 54px auto 0;
+  touch-action: none;
+}
+.retrato .foto { display: block; width: 100%; height: auto; filter: drop-shadow(0 18px 30px rgba(20, 8, 120, .35)); -webkit-user-drag: none; }
+#birrete {
+  position: absolute;
+  left: 52%;
+  top: -34%;
+  width: 50%;
+  transform: rotate(16deg);
+  cursor: grab;
+  z-index: 3;
+  touch-action: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 10px 12px rgba(20, 8, 90, .35));
+  animation: flotar-birrete 2.6s ease-in-out infinite;
+  transition: left 0.75s cubic-bezier(.3,1.5,.5,1), top 0.75s cubic-bezier(.3,1.5,.5,1), width 0.6s ease, transform 0.75s cubic-bezier(.3,1.5,.5,1);
+}
+@keyframes flotar-birrete { 50% { translate: 0 -8px; } }
+#birrete.arrastrando { animation: none; transition: none; cursor: grabbing; }
+.puesto #birrete { left: 25%; top: -10.5%; width: 58%; transform: rotate(-3deg); animation: none; cursor: default; }
+.estrella-celeste {
+  position: absolute; right: -10%; bottom: 6%; width: 40%;
+  opacity: 0; transform: scale(0.2) rotate(-40deg);
+  transition: opacity 0.3s 0.55s, transform 0.7s cubic-bezier(.3,1.7,.5,1) 0.55s;
+  pointer-events: none; z-index: 2;
+}
+.puesto .estrella-celeste { opacity: 1; transform: none; }
+.titular {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(38px, 10.5vw, 54px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin: 26px 0 0;
+  color: var(--claro);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s 0.7s, transform 0.6s 0.7s;
+}
+.puesto .titular { opacity: 1; transform: none; }
+
+/* ---------- 2 · Diseño (sin apellido) ---------- */
+.diseno .previo { font-size: 22px; margin: 0; }
+.palabra {
+  position: relative;
+  display: inline-block;
+  margin: 92px 0 16px;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(62px, 19vw, 90px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--tinta);
+}
+.palabra .seleccion { position: relative; display: inline-block; padding: 0 4px; background: rgba(40, 120, 255, 0); transition: background 0.3s 0.4s; }
+.diseno.mostrar .seleccion { background: rgba(40, 120, 255, .22); }
+.asa { position: absolute; top: 0; bottom: 0; width: 2.5px; background: #2F7BFF; opacity: 0; transition: opacity 0.2s 0.5s; }
+.asa::after { content: ""; position: absolute; left: 50%; width: 13px; height: 13px; margin-left: -6.5px; border-radius: 50%; background: #2F7BFF; }
+.asa.ini { left: -1px; } .asa.ini::after { top: -11px; }
+.asa.fin { right: -1px; } .asa.fin::after { bottom: -11px; }
+.diseno.mostrar .asa { opacity: 1; }
+.menu {
+  position: absolute;
+  left: -2px;
+  bottom: calc(100% + 16px);
+  display: flex;
+  background: #2A2A2C;
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.22);
+  opacity: 0;
+  transform: translateY(6px) scale(.96);
+  transform-origin: 30% 100%;
+  transition: opacity 0.25s 0.8s, transform 0.25s 0.8s;
+  white-space: nowrap;
+}
+.menu::after { content: ""; position: absolute; left: 96px; top: 100%; margin-left: -9px; border: 9px solid transparent; border-top-color: #2A2A2C; border-bottom: 0; }
+.diseno.mostrar .menu { opacity: 1; transform: none; }
+.menu button {
+  appearance: none; border: 0; background: none; cursor: pointer;
+  color: #fff; font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: 15px;
+  padding: 11px 13px;
+  -webkit-tap-highlight-color: transparent;
+}
+.menu button + button { border-left: 1px solid rgba(255,255,255,.18); }
+.menu button:active { background: rgba(255,255,255,.14); }
+.menu button.tachado { text-decoration: line-through; color: rgba(255,255,255,.5); }
+.diseno .despues { font-size: 22px; margin: 20px 0 0; }
+.respuesta { min-height: 100px; margin-top: 26px; }
+.respuesta p { margin: 0; font-size: 20px; line-height: 1.35; }
+.respuesta .remate { margin-top: 10px; font-family: var(--display); font-weight: 600; font-size: 24px; letter-spacing: -0.02em; color: var(--tinta); }
+.respuesta.aparece p { animation: aparecer 0.5s ease both; }
+.diseno .estrella-mini { position: absolute; width: 70px; right: -78px; top: 34px; transform: rotate(14deg); }
+@keyframes aparecer { from { opacity: 0; transform: translateY(6px); } }
+
+/* ---------- 3 · El chat de la familia ---------- */
+.chat-pantalla { justify-content: flex-start; }
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - 120px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  max-height: 720px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #EEEAF7;
+  box-shadow: 0 24px 40px -22px rgba(40,20,110,.45), 0 0 0 1px rgba(42,26,216,.12);
+}
+.chat-cabeza {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px;
+  background: rgba(251, 248, 242, .96);
+  border-bottom: 1px solid rgba(42,26,216,.1);
+}
+.chat-cabeza .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--degradado); display: flex; align-items: center; justify-content: center; flex: none; }
+.chat-cabeza .avatar img { width: 22px; filter: brightness(0) invert(1); }
+.chat-cabeza strong { display: block; font-weight: 700; font-size: 16px; line-height: 1.2; }
+.chat-cabeza span { display: block; font-size: 12px; color: var(--grafito-suave); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chat-cabeza span.escribiendo { color: var(--violeta); }
+.chat-cuerpo {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  scroll-behavior: smooth;
+  background-image: url("papel.webp");
+  background-size: 260px;
+  background-blend-mode: multiply;
+  background-color: #F6F3FB;
+}
+.chat-cuerpo::before { content: ""; margin-top: auto; }
+.fecha-chat { align-self: center; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--grafito-suave); background: rgba(255,255,255,.7); border-radius: 6px; padding: 4px 8px; margin-bottom: 6px; }
+.msj {
+  position: relative;
+  max-width: 82%;
+  padding: 7px 10px 6px;
+  border-radius: 14px 14px 14px 4px;
+  background: #fff;
+  font-size: 15.5px;
+  line-height: 1.32;
+  box-shadow: 0 1px 1px rgba(28,26,58,.08);
+  animation: llegar 0.35s cubic-bezier(.3,1.4,.5,1) both;
+  transform-origin: 0 100%;
+}
+.msj.yo { align-self: flex-end; background: #DCD5FF; border-radius: 14px 14px 4px 14px; transform-origin: 100% 100%; }
+.msj b { display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 1px; }
+.msj time { float: right; margin: 6px 0 -2px 10px; font-family: var(--mono); font-size: 9.5px; color: rgba(28,26,58,.5); }
+.msj.escribe { padding: 10px 12px; }
+.msj.escribe i { display: inline-block; width: 7px; height: 7px; margin: 0 2px; border-radius: 50%; background: rgba(28,26,58,.35); animation: punto 1s infinite; }
+.msj.escribe i:nth-child(2) { animation-delay: .15s; } .msj.escribe i:nth-child(3) { animation-delay: .3s; }
+@keyframes punto { 40% { transform: translateY(-4px); background: rgba(28,26,58,.6); } }
+@keyframes llegar { from { opacity: 0; transform: scale(.7) translateY(8px); } }
+.audio { display: flex; align-items: center; gap: 10px; min-width: 210px; padding-top: 2px; }
+.audio .play { appearance: none; border: 0; flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--violeta); color: #fff; cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; padding: 0 0 0 2px; }
+.ondas { position: relative; flex: 1; height: 26px; display: flex; align-items: center; gap: 2px; }
+.ondas span { flex: 1; border-radius: 2px; background: rgba(58, 18, 224, .3); }
+.ondas .avance { position: absolute; inset: 0; width: 0; overflow: hidden; display: flex; align-items: center; gap: 2px; }
+.sonando .ondas .avance { animation: avanzar 4s linear forwards; }
+@keyframes avanzar { to { width: 100%; } }
+.audio small { font-family: var(--mono); font-size: 10px; color: var(--grafito-suave); }
+.transcripcion { display: block; margin-top: 4px; font-size: 13px; font-style: italic; color: var(--grafito-suave); }
+
+/* ---------- 4 · Fecha, hora y lugar ---------- */
+.detalles .fila { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.gigante {
+  display: block;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(84px, 27vw, 132px);
+  line-height: 0.84;
+  letter-spacing: -0.05em;
+  margin: 6px 0 0 -5px;
+  padding-bottom: 6px;
+  background: var(--degradado-texto);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.gigante small {
+  font-family: var(--mono); font-size: 16px; font-weight: 500; letter-spacing: 0.14em;
+  margin-left: 8px; -webkit-text-fill-color: var(--tinta); color: var(--tinta);
+}
+.detalles .bloque + .bloque { margin-top: 14px; }
+.detalles .voz { margin: 4px 0 0; font-size: 16px; }
+.detalles hr { border: 0; border-top: 1px solid rgba(42, 26, 216, .22); margin: 20px 0 16px; }
+.direccion { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 8.4vw, 36px); line-height: 1.02; letter-spacing: -0.025em; color: var(--tinta); margin: 6px 0 0; }
+.direccion span { display: block; font-family: var(--texto); font-weight: 400; font-size: 18px; letter-spacing: 0; color: var(--grafito); margin-top: 4px; }
+.acciones { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.boton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 46px; padding: 12px 14px;
+  border-radius: 999px; border: 1.5px solid var(--tinta);
+  background: var(--tinta); color: var(--claro);
+  font-family: var(--mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; cursor: pointer; text-align: center;
+  box-shadow: 3px 3px 0 var(--mostaza);
+  transition: transform 0.15s, box-shadow 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.boton:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--mostaza); }
+.boton:focus-visible { outline: 2px dashed var(--tinta); outline-offset: 4px; }
+.boton.claro { background: transparent; color: var(--tinta); }
+.cuenta { margin: 16px 0 0; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--tinta); }
+.cuenta span { display: block; font-family: var(--texto); text-transform: none; letter-spacing: 0; font-size: 14px; color: var(--grafito-suave); margin-top: 3px; }
+
+/* ---------- 5 · Cierre ---------- */
+.cierre { justify-content: space-between; }
+.cierre .contenido { display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+.cierre .arriba { padding-top: 18px; }
+.cierre .arriba .etiqueta { color: var(--tinta); margin-bottom: 12px; }
+.cierre .plan { font-family: var(--display); font-weight: 500; font-size: clamp(26px, 7.4vw, 32px); line-height: 1.08; letter-spacing: -0.02em; color: #24168F; margin: 0; }
+.cierre .plan-voz { font-size: 17px; line-height: 1.35; color: rgba(36, 22, 143, .78); margin: 10px 0 0; max-width: 300px; }
+.cierre .espera { font-family: var(--display); font-weight: 600; font-size: clamp(46px, 13.5vw, 66px); line-height: 0.94; letter-spacing: -0.04em; margin: 0; color: var(--claro); }
+.firma { display: flex; align-items: center; gap: 10px; margin: 20px 0 0; font-family: var(--display); font-weight: 500; font-size: 24px; letter-spacing: -0.01em; }
+.firma img { width: 40px; height: auto; transform: rotate(8deg); filter: brightness(0) invert(1); }
+.pd { margin: 22px 0 0; font-size: 15px; line-height: 1.4; color: rgba(246,242,255,.88); max-width: 320px; }
+.pd b { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; font-weight: 500; margin-right: 4px; }
+.pie { margin-top: 18px; font-size: 9.5px; color: rgba(246,242,255,.7) !important; }
+
+@media (min-width: 760px) { .pantalla { padding-left: 40px; padding-right: 40px; } }
+@media (max-height: 700px) {
+  .gigante { font-size: clamp(72px, 23vw, 110px); }
+  .detalles hr { margin: 14px 0 12px; }
+  .palabra { margin-top: 74px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01s !important; transition-delay: 0s !important; }
+}
+</style>
+<noscript><style>#sobre { display: none; } body { overflow: auto; } .pantalla { position: relative; opacity: 1; visibility: visible; transform: none; min-height: 100vh; } .titular { opacity: 1; } .pista-toque { display: none; }</style></noscript>
+</head>
+<body class="cerrado">
+
+<!-- ===== Sobre de entrada ===== -->
+<div id="sobre" role="dialog" aria-modal="true" aria-labelledby="sobre-titulo">
+  <div class="encabezado">
+    <p class="etiqueta">Correo para usted</p>
+    <h2 id="sobre-titulo">Carta de Josefina</h2>
+    <p class="voz">Para abrir con cariño (y con hambre).</p>
+  </div>
+  <button class="abrir" id="abrir" aria-label="Abrir la carta de Josefina">
+    <div class="escena">
+      <div class="sombra-piso"></div>
+      <div class="flotador">
+        <div class="sobre3d" id="sobre3d">
+          <div class="trasera"></div>
+          <div class="carta" aria-hidden="true">
+            <span class="etiqueta">Villavicencio · 25.10</span>
+            <strong>¡Julianita se graduó!</strong>
+            <span class="voz">Josefina los invita.</span>
+          </div>
+          <div class="bolsillo">
+            <div class="pieza izq"><div class="forma"></div></div>
+            <div class="pieza der"><div class="forma"></div></div>
+            <div class="pieza abajo"><div class="forma"></div></div>
+          </div>
+          <div class="sombra-solapa"><i></i></div>
+          <div class="solapa">
+            <div class="cara frente"></div>
+            <div class="cara dentro"></div>
+          </div>
+          <img class="sello" src="estrella.webp" alt="">
+        </div>
+      </div>
+    </div>
+  </button>
+  <p class="pista" aria-hidden="true">Toque para abrir</p>
+</div>
+
+<header class="membrete" aria-hidden="true">
+  <div class="progreso" id="progreso"></div>
+  <p class="etiqueta">Carta de Josefina</p>
+</header>
+
+<main id="escenario">
+
+  <!-- 1 · Portada -->
+  <section class="pantalla degradado portada" data-fondo="degradado" aria-label="Portada">
+    <div class="contenido">
+      <div class="retrato">
+        <img class="foto" src="foto.webp" alt="Julianita de chiquita, con una camiseta blanca de leoncitos" draggable="false">
+        <img id="birrete" src="birrete.webp" alt="Birrete de grado" draggable="false">
+        <img class="estrella-celeste" src="estrella.webp" alt="">
+      </div>
+      <h1 class="titular">¡Julianita se graduó!</h1>
+    </div>
+  </section>
+
+  <!-- 2 · Diseño (sin apellido) -->
+  <section class="pantalla diseno" aria-label="De qué se graduó">
+    <div class="contenido">
+      <p class="previo">Se graduó de</p>
+      <span class="palabra">
+        <span class="menu" role="group" aria-label="¿Diseño de qué?">
+          <button type="button">¿Gráfico?</button>
+          <button type="button">¿Industrial?</button>
+          <button type="button">¿De modas?</button>
+        </span>
+        <span class="seleccion">Diseño<i class="asa ini"></i><i class="asa fin"></i></span>
+        <img class="estrella-mini" src="estrella.webp" alt="">
+      </span>
+      <p class="despues">en Los Andes, allá en Bogotá.</p>
+      <div class="respuesta" id="respuesta" aria-live="polite">
+        <p class="voz">¿Diseño de qué? Eso mismo pregunté yo. Escoja una, a ver si usted adivina.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · El chat de la familia -->
+  <section class="pantalla chat-pantalla" aria-label="El chat de la familia">
+    <div class="contenido">
+      <div class="chat">
+        <div class="chat-cabeza">
+          <div class="avatar"><img src="corazon.png" alt=""></div>
+          <div style="min-width:0">
+            <strong>Suárez Marín 💛</strong>
+            <span id="chat-estado">Abuelita, Yurleny, Angélica, Gabriel, Juan Felipe</span>
+          </div>
+        </div>
+        <div class="chat-cuerpo" id="chat" aria-live="polite">
+          <p class="fecha-chat">Hoy</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · Fecha, hora y lugar -->
+  <section class="pantalla detalles" aria-label="Fecha, hora y lugar">
+    <div class="contenido">
+      <div class="bloque">
+        <p class="etiqueta">Domingo</p>
+        <span class="gigante">25.10</span>
+      </div>
+      <div class="bloque">
+        <p class="etiqueta">A las</p>
+        <span class="gigante">3:00<small>P.M.</small></span>
+        <p class="voz">Puntualitos, que la comida no espera.</p>
+      </div>
+      <hr>
+      <p class="etiqueta">En mi casa</p>
+      <p class="direccion">Cra 37K #19-45<span>Villavicencio</span></p>
+      <div class="acciones">
+        <a class="boton" href="https://www.google.com/maps/search/?api=1&amp;query=Cra%2037K%20%2319-45%2C%20Villavicencio%2C%20Meta%2C%20Colombia" target="_blank" rel="noopener">Cómo llegar ↗</a>
+        <a class="boton claro" id="calendario" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Grado%20de%20Julianita%20en%20casa%20de%20Josefina&amp;dates=20261025T150000%2F20261025T190000&amp;ctz=America%2FBogota&amp;location=Cra%2037K%20%2319-45%2C%20Villavicencio%2C%20Meta%2C%20Colombia&amp;details=Comida%2C%20algo%20de%20tomar%20y%20mucha%20charla." target="_blank" rel="noopener">Al calendario +</a>
+      </div>
+      <p class="cuenta" id="cuenta">Faltan unos días<span id="cuenta-voz">…y yo todavía tratando de entender qué estudió.</span></p>
+    </div>
+  </section>
+
+  <!-- 5 · Cierre -->
+  <section class="pantalla degradado cierre" data-fondo="degradado" aria-label="Cierre">
+    <div class="contenido">
+      <div class="arriba">
+        <p class="etiqueta">El plan</p>
+        <p class="plan">Comida, algo de tomar y mucha charla.</p>
+        <p class="plan-voz">Y si alguien entiende la carrera, que me la explique.</p>
+      </div>
+      <div class="abajo-cierre">
+        <p class="espera">Los espero con la mesa puesta.</p>
+        <p class="firma">— Josefina <img src="corazon.png" alt=""></p>
+        <p class="pd"><b>P.D.</b> Si le preguntan a Julianita qué hace, siéntense primero.</p>
+        <p class="etiqueta pie">Hecho con cariño (y con diseño, sin apellido)</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<p class="pista-toque" id="pista" aria-hidden="true">Toque para seguir →</p>
+<button type="button" class="volver" id="volver" aria-label="Volver a la pantalla anterior">← Atrás</button>
+<div class="oculto">
+  <button type="button" id="sr-siguiente">Siguiente</button>
+</div>
+
+<script>
+(function () {
+  var reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var pantallas = Array.prototype.slice.call(document.querySelectorAll(".pantalla"));
+  var escenario = document.getElementById("escenario");
+  var progreso = document.getElementById("progreso");
+  var pista = document.getElementById("pista");
+  var actual = 0;
+  var pasos = {}; // pasos internos por pantalla: avanzar() devuelve true si consumió el toque
+
+  pantallas.forEach(function () { progreso.appendChild(document.createElement("i")); });
+  var segmentos = progreso.querySelectorAll("i");
+
+  function ir(i) {
+    if (i < 0 || i >= pantallas.length) return;
+    pantallas.forEach(function (p, k) {
+      p.classList.toggle("activa", k === i);
+      p.classList.toggle("atras", k < i);
+      p.inert = k !== i;
+      p.setAttribute("aria-hidden", k === i ? "false" : "true");
+      segmentos[k].classList.toggle("lleno", k <= i);
+    });
+    actual = i;
+    document.body.classList.toggle("sobre-degradado", pantallas[i].dataset.fondo === "degradado");
+    if (pasos[i] && pasos[i].entrar) pasos[i].entrar();
+    actualizarPista();
+  }
+  function actualizarPista() {
+    var p = pasos[actual];
+    var texto = p && p.pista ? p.pista() : null;
+    if (!texto) texto = actual === pantallas.length - 1 ? "Toque para ver de nuevo ↺" : "Toque para seguir →";
+    pista.textContent = texto;
+  }
+  function adelante() {
+    var p = pasos[actual];
+    if (p && p.avanzar && p.avanzar()) { actualizarPista(); return; }
+    ir(actual === pantallas.length - 1 ? 0 : actual + 1);
+  }
+  function atras() { if (actual > 0) ir(actual - 1); else volverAlSobre(); }
+
+  // Toques: tercio izquierdo vuelve, el resto avanza. Botones, enlaces y el birrete se respetan.
+  var ultimoGesto = 0;
+  escenario.addEventListener("click", function (e) {
+    if (document.body.classList.contains("cerrado")) return;
+    if (e.target.closest("a, button, #birrete")) return;
+    if (Date.now() - ultimoGesto < 350) return;
+    ultimoGesto = Date.now(); // evita que un doble toque salte dos pantallas
+    // en la portada, mientras no tenga el birrete, cualquier toque se lo pone
+    var puedeVolver = actual > 0 || pantallas[0].classList.contains("puesto");
+    if (e.clientX < window.innerWidth * 0.28 && puedeVolver) atras();
+    else adelante();
+  });
+  var x0 = null, y0 = null;
+  escenario.addEventListener("touchstart", function (e) {
+    if (e.target.closest("#birrete")) { x0 = null; return; }
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+  }, { passive: true });
+  escenario.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) { ultimoGesto = Date.now(); dx < 0 ? adelante() : atras(); }
+    x0 = null;
+  }, { passive: true });
+  document.addEventListener("keydown", function (e) {
+    if (document.body.classList.contains("cerrado")) return;
+    if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); adelante(); }
+    if (e.key === "ArrowLeft") atras();
+  });
+  document.getElementById("sr-siguiente").addEventListener("click", adelante);
+  document.getElementById("volver").addEventListener("click", atras);
+
+  // ---------- Sobre ----------
+  var sobre = document.getElementById("sobre");
+  var sobre3d = document.getElementById("sobre3d");
+  sobre.addEventListener("pointermove", function (e) {
+    if (sobre.classList.contains("abierto") || e.pointerType === "touch") return;
+    var dx = e.clientX / window.innerWidth - 0.5, dy = e.clientY / window.innerHeight - 0.5;
+    sobre3d.style.setProperty("--ry", (dx * 18).toFixed(1) + "deg");
+    sobre3d.style.setProperty("--rx", (-dy * 14).toFixed(1) + "deg");
+  });
+  document.getElementById("abrir").addEventListener("click", function () {
+    if (sobre.classList.contains("abierto")) return;
+    sobre3d.style.setProperty("--ry", "0deg");
+    sobre3d.style.setProperty("--rx", "0deg");
+    sobre.classList.add("abierto");
+    relojes.push(setTimeout(function () {
+      sobre.classList.add("fuera");
+      document.body.classList.remove("cerrado");
+      ir(0);
+    }, reducido ? 50 : 1700));
+    relojes.push(setTimeout(function () { sobre.hidden = true; }, reducido ? 100 : 2400));
+  });
+  var relojes = [];
+  // Volver a la carta: el sobre reaparece abierto y se vuelve a cerrar solito.
+  function volverAlSobre() {
+    relojes.forEach(clearTimeout);
+    relojes = [];
+    sobre.hidden = false;
+    document.body.classList.add("cerrado");
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { sobre.classList.remove("fuera"); });
+    });
+    relojes.push(setTimeout(function () { sobre.classList.remove("abierto"); }, reducido ? 50 : 650));
+  }
+
+  // ---------- 1 · Birrete ----------
+  var portada = pantallas[0];
+  var birrete = document.getElementById("birrete");
+  function ponerBirrete() {
+    birrete.classList.remove("arrastrando");
+    birrete.style.translate = "";
+    portada.classList.add("puesto");
+    actualizarPista();
+  }
+  var arrastre = null;
+  birrete.addEventListener("pointerdown", function (e) {
+    if (portada.classList.contains("puesto")) return;
+    arrastre = { x: e.clientX, y: e.clientY };
+    birrete.setPointerCapture(e.pointerId);
+    birrete.classList.add("arrastrando");
+    e.preventDefault();
+  });
+  birrete.addEventListener("pointermove", function (e) {
+    if (!arrastre) return;
+    birrete.style.translate = (e.clientX - arrastre.x) + "px " + (e.clientY - arrastre.y) + "px";
+  });
+  function soltar() {
+    if (!arrastre) return;
+    arrastre = null;
+    ultimoGesto = Date.now();
+    // Se perdona la puntería: donde lo suelte, el birrete cae en la cabeza.
+    requestAnimationFrame(ponerBirrete);
+  }
+  birrete.addEventListener("pointerup", soltar);
+  birrete.addEventListener("pointercancel", soltar);
+  pasos[0] = {
+    pista: function () { return portada.classList.contains("puesto") ? null : "↑ Póngale el birrete a Julianita"; },
+    avanzar: function () {
+      if (portada.classList.contains("puesto")) return false;
+      ponerBirrete();
+      return true;
+    }
+  };
+
+  // ---------- 2 · Diseño sin apellido ----------
+  var diseno = pantallas[1];
+  var respuesta = document.getElementById("respuesta");
+  var reacciones = {
+    "¿Gráfico?": "«¿Gráfico?» No. Eso le pregunté yo también.",
+    "¿Industrial?": "«¿Industrial?» Tampoco. Y eso que yo le apostaba a esa.",
+    "¿De modas?": "«¿De modas?» No, aunque la ropa sí le queda bonita."
+  };
+  diseno.querySelectorAll(".menu button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      b.classList.add("tachado");
+      var final = diseno.querySelectorAll(".menu button:not(.tachado)").length === 0;
+      respuesta.innerHTML = "<p class=\"voz\">" + reacciones[b.textContent] + "</p>" + (final ? "<p class=\"remate\">Diseño. Así, sin apellido.</p>" : "");
+      respuesta.classList.remove("aparece"); void respuesta.offsetWidth; respuesta.classList.add("aparece");
+    });
+  });
+  pasos[1] = {
+    entrar: function () { setTimeout(function () { diseno.classList.add("mostrar"); }, 150); },
+    pista: function () { return "Toque una opción, o siga →"; }
+  };
+
+  // ---------- 3 · El chat de la familia ----------
+  var colores = { "Abuelita": "#3A12E0", "Gabriel Suárez": "#D2601F", "Yurleny Osorio": "#9A7400", "Angélica Suárez": "#C42D6E", "Juan Felipe": "#1F6FE0" };
+  var guion = [
+    [{ de: "Abuelita", t: "Familia, pregunta seria 🙏 ¿Alguien sabe qué fue lo que estudió Julianita?" }],
+    [{ de: "Gabriel Suárez", t: "Logos, creo 🤔" }, { de: "Yurleny Osorio", t: "¿No era de muebles?" }],
+    [{ de: "Abuelita", audio: "0:47" }, { de: "Juan Felipe", t: "Abuela, en el audio solo se oye la olla a presión 😂" }],
+    [{ de: "Angélica Suárez", t: "Diseño. Sin apellido 😅" }, { de: "Abuelita", t: "¿Pero diseño de qué?" }],
+    [{ de: "Julianita", t: "El domingo les explico, abue ❤️", yo: true }, { de: "Abuelita", t: "Bueno, lo que sea se celebra. Los espero a las 3 🍲" }]
+  ];
+  var chat = document.getElementById("chat");
+  var estado = document.getElementById("chat-estado");
+  var estadoBase = estado.textContent;
+  var turno = 0, ocupado = false, minuto = 2;
+
+  function hora() { minuto += 1; return "3:" + (minuto < 10 ? "0" : "") + minuto + " p. m."; }
+  function burbuja(m) {
+    var el = document.createElement("div");
+    el.className = "msj" + (m.yo ? " yo" : "");
+    var nombre = m.yo ? "" : "<b style=\"color:" + colores[m.de] + "\">" + m.de + "</b>";
+    if (m.audio) {
+      var barras = "";
+      for (var k = 0; k < 30; k++) barras += "<span style=\"height:" + (20 + Math.round(Math.abs(Math.sin(k * 1.7)) * 80)) + "%\"></span>";
+      el.innerHTML = nombre +
+        "<div class=\"audio\"><button class=\"play\" type=\"button\" aria-label=\"Reproducir el audio de Josefina\">▶</button>" +
+        "<div class=\"ondas\">" + barras + "<div class=\"avance\">" + barras.replace(/rgba?\([^)]*\)/g, "") + "</div></div><small>" + m.audio + "</small></div>" +
+        "<span class=\"transcripcion\">«…mija, yo le pregunto y ella me habla de procesos… ¡ay, la olla!…»</span>" +
+        "<time>" + hora() + "</time>";
+      var avance = el.querySelectorAll(".avance span");
+      avance.forEach(function (s) { s.style.background = "#3A12E0"; });
+      el.querySelector(".play").addEventListener("click", function () {
+        var a = el.querySelector(".audio");
+        a.classList.remove("sonando"); void a.offsetWidth; a.classList.add("sonando");
+      });
+    } else {
+      el.innerHTML = nombre + m.t + "<time>" + hora() + "</time>";
+    }
+    return el;
+  }
+  function escribir(m, listo) {
+    if (m.yo) { chat.appendChild(burbuja(m)); bajar(); listo(); return; }
+    var e = document.createElement("div");
+    e.className = "msj escribe";
+    e.innerHTML = "<i></i><i></i><i></i>";
+    chat.appendChild(e);
+    estado.textContent = m.de + " está escribiendo…";
+    estado.classList.add("escribiendo");
+    bajar();
+    setTimeout(function () {
+      e.remove();
+      estado.textContent = estadoBase;
+      estado.classList.remove("escribiendo");
+      chat.appendChild(burbuja(m));
+      bajar();
+      listo();
+    }, reducido ? 0 : 520);
+  }
+  function bajar() { chat.scrollTop = chat.scrollHeight; }
+  function siguienteTurno() {
+    if (ocupado || turno >= guion.length) return;
+    ocupado = true;
+    var grupo = guion[turno++];
+    var i = 0;
+    (function uno() {
+      if (i >= grupo.length) { ocupado = false; actualizarPista(); return; }
+      escribir(grupo[i++], function () { setTimeout(uno, reducido ? 0 : 280); });
+    })();
+  }
+  pasos[2] = {
+    entrar: function () { if (turno === 0) setTimeout(siguienteTurno, 350); },
+    pista: function () { return turno < guion.length ? "Toque para ver más mensajes" : null; },
+    avanzar: function () {
+      if (turno < guion.length || ocupado) { siguienteTurno(); return true; }
+      return false;
+    }
+  };
+
+  // ---------- 4 · Cuenta regresiva ----------
+  var inicioFiesta = new Date("2026-10-25T15:00:00-05:00").getTime();
+  var finFiesta = new Date("2026-10-25T21:00:00-05:00").getTime();
+  var cuenta = document.getElementById("cuenta");
+  function dos(n) { return (n < 10 ? "0" : "") + n; }
+  function pintarCuenta(arriba, abajo) {
+    cuenta.firstChild.nodeValue = arriba;
+    document.getElementById("cuenta-voz").textContent = abajo;
+  }
+  function actualizar() {
+    var ahora = Date.now();
+    if (ahora >= finFiesta) return pintarCuenta("Ya celebramos", "Gracias por venir. Todavía quedó comida, por si acaso.");
+    if (ahora >= inicioFiesta) return pintarCuenta("¡Es hoy, es ahora!", "Ya estamos en la mesa. ¿Usted dónde anda?");
+    var s = Math.floor((inicioFiesta - ahora) / 1000);
+    var d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+    pintarCuenta(
+      "Faltan " + (d > 0 ? d + (d === 1 ? " día · " : " días · ") : "") + dos(h) + " h · " + dos(m) + " min",
+      d === 0 ? "…y hoy por fin lo celebramos, entienda o no entienda." : "…y yo todavía tratando de entender qué estudió."
+    );
+  }
+  actualizar();
+  setInterval(actualizar, 30000);
+
+  // ---------- Calendario: en iPhone/iPad, archivo .ics; en lo demás, Google Calendar ----------
+  var esIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (esIOS) {
+    var cal = document.getElementById("calendario");
+    cal.href = "grado.ics";
+    cal.removeAttribute("target");
+  }
+
+  ir(0);
+})();
+</script>
+</body>
+</html>

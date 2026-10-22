@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Josefina//Grado de Julianita//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:grado-julianita-20261025@josefina
+DTSTAMP:20261022T170000Z
+DTSTART:20261025T200000Z
+DTEND:20261026T000000Z
+SUMMARY:Grado de Julianita en casa de Josefina
+LOCATION:Cra 37K #19-45\, Villavicencio\, Meta\, Colombia
+DESCRIPTION:Comida\, algo de tomar y mucha charla. Vengan cómodos. Puntualitos\, que la comida no espera.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy es el grado de Julianita en casa de Josefina
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
