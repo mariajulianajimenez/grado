@@ -456,7 +456,7 @@ main { cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: 
 .detalles hr { border: 0; border-top: 1px solid rgba(42, 26, 216, .22); margin: 20px 0 16px; }
 .direccion { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 8.4vw, 36px); line-height: 1.02; letter-spacing: -0.025em; color: var(--tinta); margin: 6px 0 0; }
 .direccion span { display: block; font-family: var(--texto); font-weight: 400; font-size: 18px; letter-spacing: 0; color: var(--grafito); margin-top: 4px; }
-.acciones { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.acciones { display: flex; margin-top: 18px; }
 .boton {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 46px; padding: 12px 14px;
@@ -611,8 +611,7 @@ main { cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: 
       <p class="etiqueta">En mi casa</p>
       <p class="direccion">Cra 37K #19-45<span>Villavicencio</span></p>
       <div class="acciones">
-        <a class="boton" href="https://www.google.com/maps/search/?api=1&amp;query=Cra%2037K%20%2319-45%2C%20Villavicencio%2C%20Meta%2C%20Colombia" target="_blank" rel="noopener">Cómo llegar ↗</a>
-        <a class="boton claro" id="calendario" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Grado%20de%20Julianita%20en%20casa%20de%20Josefina&amp;dates=20261025T150000%2F20261025T190000&amp;ctz=America%2FBogota&amp;location=Cra%2037K%20%2319-45%2C%20Villavicencio%2C%20Meta%2C%20Colombia&amp;details=Comida%2C%20algo%20de%20tomar%20y%20mucha%20charla." target="_blank" rel="noopener">Al calendario +</a>
+        <a class="boton" id="calendario" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Grado%20de%20Julianita%20en%20casa%20de%20Josefina&amp;dates=20261025T150000%2F20261025T190000&amp;ctz=America%2FBogota&amp;location=Cra%2037K%20%2319-45%2C%20Villavicencio%2C%20Meta%2C%20Colombia&amp;details=Comida%2C%20algo%20de%20tomar%20y%20mucha%20charla." target="_blank" rel="noopener">Al calendario +</a>
       </div>
       <p class="cuenta" id="cuenta">Faltan unos días<span id="cuenta-voz">…y yo todavía tratando de entender qué estudió.</span></p>
     </div>
